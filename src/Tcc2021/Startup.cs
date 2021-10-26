@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Tcc2021.Models;
 
 namespace Tcc2021
 {
@@ -33,6 +35,9 @@ namespace Tcc2021
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<Tcc2021Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Tcc2021Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
